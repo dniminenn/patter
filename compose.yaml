@@ -8,6 +8,10 @@ services:
       - "127.0.0.1:8765:8765"
     volumes:
       - ./data:/data
+    # Files in ./data are owned by this user. Set PUID and PGID to your ids.
+    environment:
+      PUID: ${PUID:-1000}
+      PGID: ${PGID:-1000}
     deploy:
       resources:
         reservations:

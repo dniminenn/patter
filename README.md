@@ -34,14 +34,16 @@ With Docker and the NVIDIA Container Toolkit:
 docker compose up -d
 ```
 
-It builds the image on the official PyTorch CUDA 12.4 base, keeps `config.json`, `glossary.txt`, `token`, and the weights in `./data`, and binds `127.0.0.1:8765`. Edit the `ports` line in `compose.yaml` to let other machines use the GPU. The token is printed on first start and lives in `data/token`.
+It builds the image on the official PyTorch CUDA 12.4 base, keeps `config.json`, `glossary.txt`, `token`, and the weights in `./data`, and binds `127.0.0.1:8765`. Edit the `ports` line in `compose.yaml` to let other machines use the GPU. The token is written on first start to `data/token`. Files in `data/` belong to `PUID:PGID`, 1000 by default; set those to your own ids in the environment or a `.env` file.
 
 With Podman and CDI:
 
 ```
 podman build -t patter-server .
-podman run -d --name patter --device nvidia.com/gpu=all -p 127.0.0.1:8765:8765 -v ./data:/data:Z patter-server
+podman run -d --name patter --device nvidia.com/gpu=all -e PUID=0 -p 127.0.0.1:8765:8765 -v ./data:/data:Z patter-server
 ```
+
+Rootless Podman already maps root in the container to you, so `PUID=0` keeps the files yours.
 
 `glossary.txt` is one name per line. That spelling is the spelling that gets typed. It is read on every request, so edits need no restart.
 

@@ -38,6 +38,7 @@ static int capturing;
 static int dirty_key;
 static int ui_up;
 static char key_name[64];
+static char trayTitle[96];
 
 extern void patterGoSave(char *server, char *hotkey, char *asr, char *cleanup, char *language, char *second, char *mic);
 extern void patterGoStart(void);
@@ -661,7 +662,7 @@ static int patter_ui_run(const char *hotkey, const char *server, const char *asr
 
     tray = app_indicator_new("patter", "emblem-ok-symbolic", APP_INDICATOR_CATEGORY_APPLICATION_STATUS);
     app_indicator_set_status(tray, APP_INDICATOR_STATUS_ACTIVE);
-    app_indicator_set_title(tray, "Patter");
+    app_indicator_set_title(tray, "Patter: Ready");
     app_indicator_set_menu(tray, GTK_MENU(menu));
     app_indicator_set_secondary_activate_target(tray, showItem);
 
@@ -708,8 +709,9 @@ static gboolean apply_status(gpointer data) {
         gtk_widget_set_sensitive(stopBtn, m->armed);
         gtk_widget_set_sensitive(startItem, !m->armed);
         gtk_widget_set_sensitive(stopItem, m->armed);
-        app_indicator_set_icon_full(tray, m->icon, m->title);
-        app_indicator_set_title(tray, m->title);
+        snprintf(trayTitle, sizeof trayTitle, "Patter: %s", m->title);
+        app_indicator_set_icon_full(tray, m->icon, trayTitle);
+        app_indicator_set_title(tray, trayTitle);
     }
     free(m->icon);
     free(m->title);
