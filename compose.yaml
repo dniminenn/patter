@@ -1,0 +1,17 @@
+services:
+  patter:
+    build: .
+    image: patter-server
+    restart: unless-stopped
+    # Drop the 127.0.0.1: prefix to let other machines on the LAN use this GPU.
+    ports:
+      - "127.0.0.1:8765:8765"
+    volumes:
+      - ./data:/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

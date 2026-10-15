@@ -1,0 +1,9 @@
+data/
+venv/
+hf/
+.git/
+token
+config.json
+glossary.txt
+*.go
+__pycache__/

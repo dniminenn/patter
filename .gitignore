@@ -1,0 +1,9 @@
+config.json
+glossary.txt
+token
+server.json
+__pycache__/
+*.pyc
+venv/
+hf/
+data/

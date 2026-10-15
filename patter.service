@@ -1,0 +1,21 @@
+[Unit]
+Description=Dictation speech server
+After=network-online.target nvidia-persistenced.service
+Wants=network-online.target
+
+[Service]
+# Edit User, WorkingDirectory, HF_HOME, and ExecStart for this machine.
+User=patter
+Group=patter
+WorkingDirectory=/opt/patter
+Environment=HF_HOME=/opt/patter/hf
+Environment=HF_HUB_DISABLE_TELEMETRY=1
+Environment=TOKENIZERS_PARALLELISM=false
+Environment=PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+ExecStart=/opt/patter/venv/bin/python /opt/patter/server.py
+Restart=on-failure
+RestartSec=5
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+{
+  "listen": ["127.0.0.1"],
+  "port": 8765,
+  "asr": "Qwen/Qwen3-ASR-1.7B",
+  "sanitizer": "Qwen/Qwen3-4B-Instruct-2507",
+  "language": "English",
+  "glossary": "glossary.txt",
+  "token_file": "token"
+}

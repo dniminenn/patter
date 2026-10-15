@@ -1,0 +1,9 @@
+{
+  "server": "http://127.0.0.1:8765",
+  "fallback": "",
+  "token_file": "~/.config/patter/token",
+  "hotkey": "F9",
+  "asr": "Qwen/Qwen3-ASR-1.7B",
+  "sanitizer": "Qwen/Qwen3-4B-Instruct-2507",
+  "language": "English"
+}

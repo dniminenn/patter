@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Patter
+Comment=Hold a key and speak
+Exec=patter daemon
+Icon=audio-input-microphone
+Terminal=false
+Categories=Utility;
+StartupWMClass=Patter

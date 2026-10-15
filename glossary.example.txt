@@ -1,0 +1,2 @@
+# One name per line. This spelling is the spelling that gets typed.
+# Lines starting with # are ignored.
